@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace controller.Player
+namespace ScentInTheShadow.Mechanic.Player.Controller
 {
     public class PlayerMovement : MonoBehaviour
     {

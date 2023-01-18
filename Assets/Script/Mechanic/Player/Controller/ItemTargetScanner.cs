@@ -1,7 +1,6 @@
-
 using UnityEngine;
 
-namespace controller.Player.ItemTargetScanners
+namespace ScentInTheShadow.Mechanic.Player.Controller
 {
     [System.Serializable]
     public class ItemTargetScanner

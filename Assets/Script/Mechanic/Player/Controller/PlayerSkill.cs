@@ -1,8 +1,7 @@
 using UnityEngine;
-using controller.Player.ItemTargetScanners;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-namespace controller.Player
+namespace ScentInTheShadow.Mechanic.Player.Controller
 {
     public class PlayerSkill : MonoBehaviour
     {
