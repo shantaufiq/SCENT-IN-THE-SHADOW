@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class AuthView : MonoBehaviour
+namespace ScentInTheShadow.Auth
 {
-    // Start is called before the first frame update
-    void Start()
+    public class AuthView : MonoBehaviour
     {
-        
-    }
+        public TMP_Text MessageAlert;
 
-    // Update is called once per frame
-    void Update()
-    {
+        [Header("Login Request")]
+        public GameObject LoginPage;
+        public TMP_InputField EmailLogin;
+        public TMP_InputField PasswordLogin;
+
+        [Header("Register Request")]
+        public GameObject RegisterPage;
+        public TMP_InputField UsernameRegis;
+        public TMP_InputField EmailRegis;
+        public TMP_InputField PasswordRegis;
+
         
     }
 }

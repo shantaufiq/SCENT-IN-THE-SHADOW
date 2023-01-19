@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AuthModel : MonoBehaviour
+namespace ScentInTheShadow.Auth
 {
-    // Start is called before the first frame update
-    void Start()
+    public class AuthModel : MonoBehaviour
     {
-        
-    }
+        public string Username;
+        public string Email;
+        public string Password;
+        public string ConfirmPassword;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void LoginRequest(string emailRequest, string passwordRequest)
+        {
+            Email = emailRequest;
+            Password = passwordRequest;
+        }
+
+        public void RegisterRequest(string usernameRequest, string emailRequest, string passwordRequest)
+        {
+            Username = usernameRequest;
+            Email = emailRequest;
+            Password = passwordRequest;
+        }
     }
 }
