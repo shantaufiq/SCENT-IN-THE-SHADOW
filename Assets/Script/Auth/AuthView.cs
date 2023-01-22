@@ -18,6 +18,9 @@ namespace ScentInTheShadow.Auth
         public TMP_InputField EmailRegis;
         public TMP_InputField PasswordRegis;
 
+        [Header("RecoveryPassword")]
+        public GameObject RecoveryPage;
+        public TMP_InputField EmailRecovery;
         
     }
 }

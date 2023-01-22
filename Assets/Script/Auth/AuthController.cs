@@ -14,6 +14,7 @@ namespace ScentInTheShadow.Auth
         {
             Login,
             Regis,
+            Recovery,
         }
         
         public AuthView View;
@@ -32,6 +33,29 @@ namespace ScentInTheShadow.Auth
             };
 
             PlayFabClientAPI.RegisterPlayFabUser(request, OnregisterSuccess, OnError);
+        }
+
+        public void RecoveryPassword()
+        {
+            var request = new SendAccountRecoveryEmailRequest
+            {
+                Email = View.EmailRecovery.text,
+                TitleId = "4FFD8",
+            };
+
+            PlayFabClientAPI.SendAccountRecoveryEmail(request, OnRecoverySuccess, OnRecoveryError);
+        }
+
+        private void OnRecoveryError(PlayFabError obj)
+        {
+            View.MessageAlert.text = "Email not match any record";
+        }
+
+        private void OnRecoverySuccess(SendAccountRecoveryEmailResult obj)
+        {
+            View.MessageAlert.text = "Check You're email!";
+            _currentState = AuthState.Login;
+            SetCurrentState();
         }
 
         public void LoginUser()
@@ -71,10 +95,17 @@ namespace ScentInTheShadow.Auth
                 case AuthState.Login:
                     View.LoginPage.SetActive(true);
                     View.RegisterPage.SetActive(false);
+                    View.RecoveryPage.SetActive(false);
                     break;
                 case AuthState.Regis:
                     View.LoginPage.SetActive(false);
                     View.RegisterPage.SetActive(true);
+                    View.RecoveryPage.SetActive(false);
+                    break;
+                case AuthState.Recovery:
+                    View.LoginPage.SetActive(false);
+                    View.RegisterPage.SetActive(false);
+                    View.RecoveryPage.SetActive(true);
                     break;
             }
         }
