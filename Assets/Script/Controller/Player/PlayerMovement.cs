@@ -13,11 +13,15 @@ namespace controller.Player
 
         private void Awake()
         {
-            Physics.IgnoreLayerCollision(6, 7);
+            Physics.IgnoreLayerCollision(6, 8);
+            Physics.IgnoreLayerCollision(0, 8);
+            Physics.IgnoreLayerCollision(8, 8);
+            Physics.IgnoreLayerCollision(6, 6);
         }
         private void Update()
         {
-            _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));  // Ubat Input <--------------------------
+            Vector2 movement = InputManager.instance.playerInput.Character.Move.ReadValue<Vector2>();
+            _input = new Vector3(movement.x, 0, movement.y);
             Look();
         }
         private void FixedUpdate()
