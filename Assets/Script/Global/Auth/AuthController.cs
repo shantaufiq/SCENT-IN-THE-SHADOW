@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
-using System;
-using UnityEngine.SceneManagement;
+using ScentInTheShadow.Global.Manager;
 
-namespace ScentInTheShadow.Auth
+namespace ScentInTheShadow.Global.Auth
 {
     public class AuthController : MonoBehaviour
     {
@@ -20,21 +17,7 @@ namespace ScentInTheShadow.Auth
         public AuthView View;
         private AuthState _currentState;
 
-
-        public void RegisterUser()
-        {
-            var request = new RegisterPlayFabUserRequest
-            {
-                DisplayName = View.UsernameRegis.text,
-                Email = View.EmailRegis.text,
-                Password = View.PasswordRegis.text,
-
-                RequireBothUsernameAndEmail = false
-            };
-
-            PlayFabClientAPI.RegisterPlayFabUser(request, OnregisterSuccess, OnError);
-        }
-
+        #region Recovery Password
         public void RecoveryPassword()
         {
             var request = new SendAccountRecoveryEmailRequest
@@ -46,11 +29,6 @@ namespace ScentInTheShadow.Auth
             PlayFabClientAPI.SendAccountRecoveryEmail(request, OnRecoverySuccess, OnRecoveryError);
         }
 
-        private void OnRecoveryError(PlayFabError obj)
-        {
-            View.MessageAlert.text = "Email not match any record";
-        }
-
         private void OnRecoverySuccess(SendAccountRecoveryEmailResult obj)
         {
             View.MessageAlert.text = "Check You're email!";
@@ -58,35 +36,73 @@ namespace ScentInTheShadow.Auth
             SetCurrentState();
         }
 
+        private void OnRecoveryError(PlayFabError obj)
+        {
+            View.MessageAlert.text = "Email not match any record";
+        }
+
+        #endregion
+
+        #region Register User
+        public void RegisterUser()
+        {
+            var request = new RegisterPlayFabUserRequest
+            {
+                DisplayName = View.UsernameRegis.text,
+                Email = View.EmailRegis.text,
+                Password = View.PasswordRegis.text,
+
+                RequireBothUsernameAndEmail = false
+            };
+
+            PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnRegisterError);
+        }
+
+        private void OnRegisterSuccess(RegisterPlayFabUserResult result)
+        {
+            View.MessageAlert.text = "Create New Account Successfuly!";
+            _currentState = AuthState.Login;
+            SetCurrentState();
+
+            /*GameManager.instance.SetPlayerData();*/
+        }
+        private void OnRegisterError(PlayFabError error)
+        {
+
+            View.MessageAlert.text = error.ToString();
+            Debug.Log(error.GenerateErrorReport());
+        }
+        #endregion
+
+        #region Login User
         public void LoginUser()
         {
             var request = new LoginWithEmailAddressRequest
             {
                 Email = View.EmailLogin.text,
                 Password = View.PasswordLogin.text,
+
+                InfoRequestParameters = new GetPlayerCombinedInfoRequestParams()
             };
 
-            PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
+            PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginError);
         }
-
+                                                                                                                                                   
         private void OnLoginSuccess(LoginResult result)
         {
             View.MessageAlert.text = "Loggin In!";
-            /*SceneManager.LoadScene("PlayerMoveTest");*/
+            GameManager.instance.SetPlayerData();
+            GameManager.instance.GetUserData(result.PlayFabId);
+            GameManager.instance.Loadscene("MainScene");
         }
 
-        private void OnError(PlayFabError error)
+        private void OnLoginError(PlayFabError error)
         {
             View.MessageAlert.text = error.ToString();
             Debug.Log(error.GenerateErrorReport());
         }
+        #endregion
 
-        private void OnregisterSuccess(RegisterPlayFabUserResult result)
-        {
-            View.MessageAlert.text = "Create New Account Successfuly!";
-            _currentState = AuthState.Login;
-            SetCurrentState();
-        }
 
         public void SetCurrentState ()
         {
