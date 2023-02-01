@@ -28,7 +28,7 @@ namespace ScentInTheShadow.Scene.MainScene
             playButton.onClick.AddListener(Play);
             CompleteProfile();
             SelectFamale();
-            /*Invoke("LoadUserInfo", 0.5f);*/
+            Invoke("LoadUserInfo", 0.5f);
 
         }
 
@@ -75,7 +75,7 @@ namespace ScentInTheShadow.Scene.MainScene
 
             GameManager.instance.SetUserData(request);
 
-          /*  GameManager.instance.GetUserData(GameManager.instance.playfabId);*/
+            GameManager.instance.GetUserData();
             LoadUserInfo();
 
             completeProfilePopup.gameObject.SetActive(false);
@@ -85,15 +85,15 @@ namespace ScentInTheShadow.Scene.MainScene
         {
             var user = GameManager.instance.User;
 
-            if(user.School == null || user.Country == null)
+            if(user.School == "" || user.Country == "")
             {
-                completeProfilePopup.SetActive(false);
+                completeProfilePopup.SetActive(true);
                 Debug.Log("open");
                 Debug.Log(user.School);
             }
-            else if(user.School != null || user.Country != null)
+            else 
             {
-                completeProfilePopup.SetActive(true);
+                completeProfilePopup.SetActive(false);
                 Debug.Log("close");
                 Debug.Log(user.School);
             }
