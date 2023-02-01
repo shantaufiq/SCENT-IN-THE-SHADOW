@@ -15,7 +15,7 @@ MonoBehaviour:
   TitleId: 4FFD8
   DeveloperSecretKey: GC8R674936YF1ITEOI88T5BR57PH7TRZ53EUJFIHFIJ5EQQ4TE
   ProductionEnvironmentUrl: 
-  RequestType: 2
+  RequestType: 0
   DisableDeviceInfo: 0
   DisableFocusTimeCollection: 0
   RequestTimeout: 2000
