@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
   DevAccountEmail: fahsaaula8@gmail.com
+<<<<<<< HEAD
   DevAccountToken: b59e5otjzxhog5igdzx3zo3gahyo8e8omjom7cbhx9co1u9mse6547eoq7brdgnt9nqa4kt871ohmpxy5te6j3tfoqm95c9aq6qqrzenh77c5pkqr751w8mtapabcu67aidyrenahznu8a3wntbx6wapdmhyifghwffz18jhp5c4ie3j86swin5euby5i3e3ajswwrya
+=======
+  DevAccountToken: 4dbo9b7shkwm8m4483ae3bgitcwr64cgdpfunbghqr8kztztuscgzzff3xyjc8rcwkjt3ue5jc466aoxaqjgheujzqrsnmr5w5gc6xxmm91jqt68o9j3w8guufws6j59pmn6bj5qpj88u1p5d5xdhjmf784i5d3uwai58y3iomg9wq6p88o64im99his3t3abyt7yakm
+>>>>>>> 47e132c97740b6bf6f9bec50f5ad8dd1a5eea7b0
   AadAuthorization: 
   SelectedStudio: METALABS
   SdkPath: Assets/PlayFabSDK
