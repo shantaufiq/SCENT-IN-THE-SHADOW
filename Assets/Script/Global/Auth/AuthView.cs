@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace ScentInTheShadow.Auth
+namespace ScentInTheShadow.Global.Auth
 {
     public class AuthView : MonoBehaviour
     {
