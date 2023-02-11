@@ -1,3 +1,4 @@
+using ScentInTheShadow.Scene.LoadingScene;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,19 +13,21 @@ namespace ScentInTheShadow.Scene.ChapterSelection
         [SerializeField] private TMP_Text chapterNameText;
 
         private string chapterName;
+        private string targetScene;
         private bool isUnlocked;
 
 
         private void Start()
         {
             button = GetComponent<Button>();
+            button.onClick.AddListener(delegate { LoadingManager.instance.StartLoading(targetScene); });
         }
 
-        public void LoadChapterButtonInfo(string _chapterName, bool _isUnlocked)
+        public void LoadChapterButtonInfo(ChapterData.Chapter Data)
         {
-            Debug.Log(_chapterName + _isUnlocked);
-            chapterName = _chapterName;
-            isUnlocked = _isUnlocked;
+            chapterName = Data.ChapterName;
+            isUnlocked = Data.IsUnlocked;
+            targetScene = Data.TargetScene;
 
             chapterNameText.text = chapterName;
             if(isUnlocked)

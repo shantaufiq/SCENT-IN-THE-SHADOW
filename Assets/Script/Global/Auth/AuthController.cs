@@ -16,8 +16,6 @@ namespace ScentInTheShadow.Global.Auth
         }
         
         public AuthView View;
-        public LoadingManager LoadingManager;
-        [HideInInspector] public string playfabId;
         private AuthState _currentState;
 
         #region Recovery Password
@@ -66,13 +64,11 @@ namespace ScentInTheShadow.Global.Auth
             View.MessageAlert.text = "Create New Account Successfuly!";
             _currentState = AuthState.Login;
             SetCurrentState();
-
-            /*GameManager.instance.SetPlayerData();*/
         }
         private void OnRegisterError(PlayFabError error)
         {
 
-            View.MessageAlert.text = error.ToString();
+            View.MessageAlert.text = error.ErrorMessage;
             Debug.Log(error.GenerateErrorReport());
         }
         #endregion
@@ -86,6 +82,9 @@ namespace ScentInTheShadow.Global.Auth
                 Password = View.PasswordLogin.text,
 
                 InfoRequestParameters = new GetPlayerCombinedInfoRequestParams()
+                {
+                    GetPlayerProfile = true
+                }
             };
 
             PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginError);
@@ -94,21 +93,14 @@ namespace ScentInTheShadow.Global.Auth
         private void OnLoginSuccess(LoginResult result)
         {
             View.MessageAlert.text = "Loggin In!";
-            /* GameManager.instance.SetPlayerData();
-             Invoke("GameManager.instance.GetUserData(result.PlayFabId)", 1f);
-             Invoke("GameManager.instance.GetPlayerData(result.PlayFabId)", 1f);
 
-             
-             GameManager.instance.Loadscene("MainScene");*/
-
-            GameManager.instance.playfabId = result.PlayFabId;
-            playfabId = result.PlayFabId;
-            LoadingManager.StartLoading("MainScene");
+            GameManager.instance.LoginResult = result;
+            LoadingManager.instance.StartLoading("MainScene");
         }
 
         private void OnLoginError(PlayFabError error)
         {
-            View.MessageAlert.text = error.ToString();
+            View.MessageAlert.text = error.ErrorMessage;
             Debug.Log(error.GenerateErrorReport());
         }
         #endregion

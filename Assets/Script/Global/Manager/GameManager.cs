@@ -5,7 +5,6 @@ using ScentInTheShadow.Global.PlayerData;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using ScentInTheShadow.Global.Auth;
 
 namespace ScentInTheShadow.Global.Manager
 {
@@ -13,7 +12,6 @@ namespace ScentInTheShadow.Global.Manager
     public class UserInfo
     {
         public string Username;
-        public string Email;
         public string Gender;
         public string School;
         public string Program_Study;
@@ -22,7 +20,7 @@ namespace ScentInTheShadow.Global.Manager
     
     public class GameManager : MonoBehaviour
     {
-        [HideInInspector] public string playfabId;
+        [HideInInspector] public LoginResult LoginResult;
 
         [SerializeField] private SceneData sceneManager;
 
@@ -72,7 +70,7 @@ namespace ScentInTheShadow.Global.Manager
         {
             var request = new GetUserDataRequest()
             {
-                PlayFabId = playfabId,
+                PlayFabId = LoginResult.PlayFabId,
                 Keys = null
             };
 
@@ -88,8 +86,11 @@ namespace ScentInTheShadow.Global.Manager
             }
             else
             {
-                Debug.Log("get User");
-                var request = new UserInfo();
+                var request = new UserInfo()
+                {
+                    Username = LoginResult.InfoResultPayload.PlayerProfile.DisplayName
+                };
+
                 SetUserData(request);
                 GetUserData();
             }
@@ -120,7 +121,7 @@ namespace ScentInTheShadow.Global.Manager
         {
             var request = new GetUserDataRequest()
             {
-                PlayFabId = playfabId,
+                PlayFabId = LoginResult.PlayFabId,
                 Keys = null
             };
 
