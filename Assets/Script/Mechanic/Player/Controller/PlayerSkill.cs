@@ -1,5 +1,4 @@
-using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine; 
 
 namespace ScentInTheShadow.Mechanic.Player.Controller
 {
@@ -55,12 +54,12 @@ namespace ScentInTheShadow.Mechanic.Player.Controller
             if (SK1Timer <= 0)
             {
                 if (OnSK1)
-                {
+            {
                     SK1Timer2 = SK1cooldown;
-                    foreach (GameObject b in Items)
-                    {
-                        b.GetComponent<Animator>().Play("idle");
-                    }
+                foreach (GameObject b in Items)
+                {
+                    b.GetComponent<Animator>().Play("idle");
+                }
                     OnSK1 = false;
                 }
                 if (SK1Timer2 >= 0)
@@ -112,11 +111,12 @@ namespace ScentInTheShadow.Mechanic.Player.Controller
             rb.AddForce(transform.forward * _Skill3ShootForce, ForceMode.Impulse);
         }
 
-
+#if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
             playerScanner.EditorGizmo(transform);
         }
+#endif
 
     }
 }

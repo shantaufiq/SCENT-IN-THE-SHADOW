@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScentInTheShadow.Mechanic.Player.Controller
 {
-   public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private Rigidbody _rb;
         [SerializeField] private float _speed = 5;

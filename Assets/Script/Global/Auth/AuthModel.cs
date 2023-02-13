@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ScentInTheShadow.Auth
+namespace ScentInTheShadow.Global.Auth
 {
     public class AuthModel : MonoBehaviour
     {
