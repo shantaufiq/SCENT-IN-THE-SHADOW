@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ec6d895f0b787468d7b41f9c9b003e, type: 3}
+  m_Name: Chapters
+  m_EditorClassIdentifier: 
+  Chapters:
+  - ChapterName: 'Opening : Untold Psychokinesis'
+    TargetScene: OpeningScene
+    BackgroundImage: {fileID: 0}
+    IsUnlocked: 1
+  - ChapterName: 'Chapter 1: Rain of Wolf '
+    TargetScene: ChapterOneScene
+    BackgroundImage: {fileID: 0}
+    IsUnlocked: 0
+  - ChapterName: 'Chapter 2: Bride in The Creek '
+    TargetScene: ChapterTwoScene
+    BackgroundImage: {fileID: 0}
+    IsUnlocked: 0
+  - ChapterName: 'Chapter 3: Shackle The Future '
+    TargetScene: ChapterThreeScene
+    BackgroundImage: {fileID: 0}
+    IsUnlocked: 0
