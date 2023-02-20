@@ -1,3 +1,4 @@
+using ScentInTheShadow.Global.Manager;
 using ScentInTheShadow.Scene.LoadingScene;
 using TMPro;
 using UnityEngine;
@@ -28,6 +29,14 @@ namespace ScentInTheShadow.Scene.ChapterSelection
             chapterName = Data.ChapterName;
             isUnlocked = Data.IsUnlocked;
             targetScene = Data.TargetScene;
+
+            if(targetScene == "OpeningScene")
+            {
+                if(GameManager.instance.Player.CharacterName == null || GameManager.instance.Player.CharacterName == "")
+                {
+                    targetScene = "CharacterSelection";
+                }
+            }
 
             chapterNameText.text = chapterName;
             if(isUnlocked)

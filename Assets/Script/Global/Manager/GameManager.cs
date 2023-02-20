@@ -96,22 +96,13 @@ namespace ScentInTheShadow.Global.Manager
             }
         }
 
-        public void SetPlayerData()
+        public void SetPlayerData(PlayerDataModel playerRequest)
         {
-            var playerData = new PlayerDataModel()
-            {
-                Health = 50,
-                Experience = 0,
-                Skor = 10,
-                Level = -1,
-                items = Inventory.items,
-            };
-            
             var request = new UpdateUserDataRequest()
             {
                 Data = new Dictionary<string, string>()
                 {
-                    {"PlayerData", JsonConvert.SerializeObject(playerData)}
+                    {"PlayerData", JsonConvert.SerializeObject(playerRequest)}
                 }
             };
             PlayFabClientAPI.UpdateUserData(request, result => Debug.Log(result), error => Debug.Log(error));
@@ -137,7 +128,17 @@ namespace ScentInTheShadow.Global.Manager
             }
             else
             {
-                SetPlayerData();
+                var playerData = new PlayerDataModel()
+                {
+                    Health = 50,
+                    Experience = 0,
+                    Skor = 10,
+                    Level = -1,
+                    items = Inventory.items,
+                };
+
+                SetPlayerData(playerData);
+                GetPlayerData();
             }
 
         }

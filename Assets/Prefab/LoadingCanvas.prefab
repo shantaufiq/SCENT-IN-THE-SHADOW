@@ -135,10 +135,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  afterLoad:
+    m_PersistentCalls:
+      m_Calls: []
   loadingProgress: {fileID: 4223205938875979568}
   fillProgress: {fileID: 4223205940748839710}
   persenText: {fileID: 4223205940836919573}
-  scene: {fileID: 11400000, guid: 6079967e6d0fbe44bb5b73db13b35df0, type: 2}
 --- !u!1 &4223205938875979566
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +285,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: fac8ab70a9b454144b65c913682904d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
