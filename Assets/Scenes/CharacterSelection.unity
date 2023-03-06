@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName:
   - Ricky
-  - Mia
+  - Stella
   obj: {fileID: -4526035156234843173, guid: 8890a4f3abf5bd14491924772f9b07a6, type: 3}
 --- !u!1 &1408506649
 GameObject:
