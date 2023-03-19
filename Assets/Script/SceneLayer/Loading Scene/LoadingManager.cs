@@ -16,7 +16,6 @@ namespace ScentInTheShadow.Scene.LoadingScene
         [SerializeField] private Image loadingProgress;
         [SerializeField] private Slider fillProgress;
         [SerializeField] private TMP_Text persenText;
-        [SerializeField] private SceneData scene;
 
         public static LoadingManager instance;
 
@@ -51,8 +50,9 @@ namespace ScentInTheShadow.Scene.LoadingScene
                     fillProgress.value = 1;
                     loadingProgress.fillAmount = 1;
                     persenText.text = (int)100 + " %";
-                    yield return new WaitForSeconds(2f);
                     afterLoad?.Invoke();
+                    yield return new WaitForSeconds(2f);
+                    
                     asyncOperation.allowSceneActivation = true;
                     
                 }

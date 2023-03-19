@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ScentInTheShadow.Scene.ChapterSelection
 {
@@ -11,6 +12,8 @@ namespace ScentInTheShadow.Scene.ChapterSelection
         public struct Chapter
         {
             public string ChapterName;
+            public string TargetScene;
+            public Image BackgroundImage;
             public bool IsUnlocked;
         }
 

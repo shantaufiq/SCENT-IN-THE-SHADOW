@@ -1,18 +1,26 @@
 using ScentInTheShadow.Global.Manager;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace ScentInTheShadow.Scene.MainScene
 {
     public class MainSceneManager : MonoBehaviour
     {
-        [SerializeField] private Button playButton;
+        [Header("Text")]
+        [SerializeField] private TMP_Text usernamText, schoolText, countryText, genderText, programStudyText;
 
-        [SerializeField] private TMP_Text schoolText, countryText, genderText, programStudyText;
+        [Header("Popups")]
         [SerializeField] private GameObject completeProfilePopup;
 
+        [Header("InputField")]
         [SerializeField] private TMP_InputField schoolInput, countryInput, programStudyInput;
+
+        [Header("Toggle")]
+        [SerializeField] private Toggle MaleToggle;
+        [SerializeField] private Toggle FamaleToggle;
 
         private enum gender
         {
@@ -25,16 +33,16 @@ namespace ScentInTheShadow.Scene.MainScene
 
         private void Start()
         {
-            playButton.onClick.AddListener(Play);
-            CompleteProfile();
-            SelectFamale();
-            Invoke("LoadUserInfo", 0.5f);
-
-        }
-
-        private void Play()
-        {
-            GameManager.instance.Loadscene("ChapterSelectionScene");
+            var manager = FindObjectOfType<GameManager>();
+            if(manager == null)
+            {
+                SceneManager.LoadScene("AuthenticcationScene");
+            }
+            else
+            {
+                Invoke("CompleteProfile", 0.2f);
+                Invoke("LoadUserInfo", 0.5f);
+            }
         }
 
         #region EditUserProfile
@@ -65,8 +73,14 @@ namespace ScentInTheShadow.Scene.MainScene
 
         public void SetUserDataRequest()
         {
+            StartCoroutine(SetUserDataRequest_Coroutine());
+        }
+
+        IEnumerator SetUserDataRequest_Coroutine()
+        {
             var request = new UserInfo()
             {
+                Username = GameManager.instance.User.Username,
                 School = schoolInput.text,
                 Country = countryInput.text,
                 Program_Study = programStudyInput.text,
@@ -75,9 +89,12 @@ namespace ScentInTheShadow.Scene.MainScene
 
             GameManager.instance.SetUserData(request);
 
+            yield return new WaitForSeconds(0.2f);
             GameManager.instance.GetUserData();
-            LoadUserInfo();
 
+            yield return new WaitForSeconds(0.5f);
+            LoadUserInfo();
+            yield return new WaitForSeconds(1f);
             completeProfilePopup.gameObject.SetActive(false);
         }
 
@@ -85,18 +102,35 @@ namespace ScentInTheShadow.Scene.MainScene
         {
             var user = GameManager.instance.User;
 
-            if(user.School == "" || user.Country == "")
+            if(user.School == null || user.Country == null)
             {
                 completeProfilePopup.SetActive(true);
-                Debug.Log("open");
-                Debug.Log(user.School);
             }
             else 
             {
                 completeProfilePopup.SetActive(false);
-                Debug.Log("close");
-                Debug.Log(user.School);
             }
+        }
+
+        public void EditProfile()
+        {
+            var Data = GameManager.instance.User;
+
+            schoolInput.text =  Data.School;
+            countryInput.text =  Data.Country;
+            programStudyInput.text = Data.Program_Study;
+            if(Data.Gender == "Male")
+            {
+                MaleToggle.isOn = true;
+                SelectMale();
+            }
+            else
+            {
+                FamaleToggle.isOn = true;
+                SelectFamale();
+            }
+
+            completeProfilePopup.SetActive(true);
         }
         #endregion
 
@@ -104,10 +138,11 @@ namespace ScentInTheShadow.Scene.MainScene
         {
             var Data = GameManager.instance.User;
 
-            schoolText.text = Data.School;
-            genderText.text = Data.Gender;
-            countryText.text = Data.Country;
-            programStudyText.text = Data.Program_Study;
+            usernamText.text = "Name : " + Data.Username;
+            schoolText.text = "School : " + Data.School;
+            genderText.text = "Gender : " + Data.Gender;
+            countryText.text = "Country : " + Data.Country;
+            programStudyText.text = "Program Study : " + Data.Program_Study;
 
         }
     }

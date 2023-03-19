@@ -17,9 +17,9 @@ namespace ScentInTheShadow.Scene.ChapterSelection
             for(int i = 0; i < data.Chapters.Count; i++)
             {
                 var temp = Instantiate(chapter, parent: this.transform);
-                string chapterName = data.Chapters[i].ChapterName;
-                bool isUnlocked = data.Chapters[i].IsUnlocked;
-                temp.LoadChapterButtonInfo(chapterName, isUnlocked);
+                var Datas = new ChapterData.Chapter();
+                Datas = data.Chapters[i];
+                temp.LoadChapterButtonInfo(Datas);
             }
         }
     }

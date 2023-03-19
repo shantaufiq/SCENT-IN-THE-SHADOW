@@ -14,10 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Chapters:
   - ChapterName: 'Opening : Untold Psychokinesis'
+    TargetScene: OpeningScene
+    BackgroundImage: {fileID: 0}
     IsUnlocked: 1
   - ChapterName: 'Chapter 1: Rain of Wolf '
+    TargetScene: ChapterOneScene
+    BackgroundImage: {fileID: 0}
     IsUnlocked: 0
   - ChapterName: 'Chapter 2: Bride in The Creek '
+    TargetScene: ChapterTwoScene
+    BackgroundImage: {fileID: 0}
     IsUnlocked: 0
   - ChapterName: 'Chapter 3: Shackle The Future '
+    TargetScene: ChapterThreeScene
+    BackgroundImage: {fileID: 0}
     IsUnlocked: 0

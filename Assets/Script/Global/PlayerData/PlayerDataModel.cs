@@ -9,7 +9,7 @@ namespace ScentInTheShadow.Global.PlayerData
         public int Experience;
         public int Skor;
         public int Level;
-        public string Gender;
+        public string CharacterName;
         public List<InventoryData.Item> items;
     }
 }
