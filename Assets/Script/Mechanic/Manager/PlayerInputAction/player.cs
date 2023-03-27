@@ -71,6 +71,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""NextDialog"",
+                    ""type"": ""Button"",
+                    ""id"": ""73586d96-2ee5-4e6e-b758-d683b8e06fae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,6 +225,28 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""action"": ""Skill3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a16341d1-267e-4b88-8972-f56702f26c40"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextDialog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9ab8df4-f830-4ef9-9304-51899c9b0ef9"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextDialog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +260,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_Character_Skill2 = m_Character.FindAction("Skill2", throwIfNotFound: true);
         m_Character_Skill3 = m_Character.FindAction("Skill3", throwIfNotFound: true);
         m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
+        m_Character_NextDialog = m_Character.FindAction("NextDialog", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +325,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Skill2;
     private readonly InputAction m_Character_Skill3;
     private readonly InputAction m_Character_Look;
+    private readonly InputAction m_Character_NextDialog;
     public struct CharacterActions
     {
         private @Player m_Wrapper;
@@ -302,6 +335,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Skill2 => m_Wrapper.m_Character_Skill2;
         public InputAction @Skill3 => m_Wrapper.m_Character_Skill3;
         public InputAction @Look => m_Wrapper.m_Character_Look;
+        public InputAction @NextDialog => m_Wrapper.m_Character_NextDialog;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -326,6 +360,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnLook;
+                @NextDialog.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnNextDialog;
+                @NextDialog.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnNextDialog;
+                @NextDialog.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnNextDialog;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -345,6 +382,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @NextDialog.started += instance.OnNextDialog;
+                @NextDialog.performed += instance.OnNextDialog;
+                @NextDialog.canceled += instance.OnNextDialog;
             }
         }
     }
@@ -356,5 +396,6 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnSkill2(InputAction.CallbackContext context);
         void OnSkill3(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnNextDialog(InputAction.CallbackContext context);
     }
 }

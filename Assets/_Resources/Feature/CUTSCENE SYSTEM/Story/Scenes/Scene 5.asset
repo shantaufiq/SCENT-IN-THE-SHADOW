@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51fb4c6070f247e48b4377b5728b8182, type: 3}
+  m_Name: Scene 5
+  m_EditorClassIdentifier: 
+  sentences:
+  - text: What if the new enemy is an alien?
+    speaker: {fileID: 11400000, guid: 7fde7f6aafea72147bd67d2271a07528, type: 2}
+    actions: []
+    music: {fileID: 0}
+    sound: {fileID: 0}
+  - text: "it\u2019s illogical"
+    speaker: {fileID: 11400000, guid: 4d68337c88ea8c3409b296661e02d516, type: 2}
+    actions: []
+    music: {fileID: 0}
+    sound: {fileID: 0}
+  - text: Dracula?
+    speaker: {fileID: 11400000, guid: 7fde7f6aafea72147bd67d2271a07528, type: 2}
+    actions: []
+    music: {fileID: 0}
+    sound: {fileID: 0}
+  - text: "i don\u2019t agree that there is a fourth novel. Untold Pyscokinesis is
+      finished. i think you should just make a new title."
+    speaker: {fileID: 11400000, guid: 4d68337c88ea8c3409b296661e02d516, type: 2}
+    actions: []
+    music: {fileID: 0}
+    sound: {fileID: 0}
+  - text: i agree and the main enemy is aliens.
+    speaker: {fileID: 11400000, guid: 7fde7f6aafea72147bd67d2271a07528, type: 2}
+    actions: []
+    music: {fileID: 0}
+    sound: {fileID: 0}
+  - text: "mother don\u2019t have a choice,honey Ibu tidak punya pilihan, sayang.
+      Penerbit telah beberapa kali menelpon ibu untuk menulis buku keempat yang harus
+      terbit tahun depan."
+    speaker: {fileID: 11400000, guid: 6aba860a623fd4a4b878f07ea59c85cd, type: 2}
+    actions: []
+    music: {fileID: 0}
+    sound: {fileID: 0}
+  - text: Ah, publisher only think about money, they never think about the feelings
+      of fans of the story.
+    speaker: {fileID: 11400000, guid: 4d68337c88ea8c3409b296661e02d516, type: 2}
+    actions: []
+    music: {fileID: 0}
+    sound: {fileID: 0}
+  - text: "that\u2019s right. beside that i feel aliens are cooler than witch."
+    speaker: {fileID: 11400000, guid: 7fde7f6aafea72147bd67d2271a07528, type: 2}
+    actions: []
+    music: {fileID: 0}
+    sound: {fileID: 0}
+  - text: "enough. tomorrow morning early you have go to the grandpa\u2019s house,right?
+      pack fast okai."
+    speaker: {fileID: 11400000, guid: 6aba860a623fd4a4b878f07ea59c85cd, type: 2}
+    actions: []
+    music: {fileID: 0}
+    sound: {fileID: 0}
+  background: {fileID: 21300000, guid: ea058e7be7574404eaeba6c23791562b, type: 3}
+  nextScene: {fileID: 11400000, guid: f8aa904cc07fd754e8f207699768eff9, type: 2}
