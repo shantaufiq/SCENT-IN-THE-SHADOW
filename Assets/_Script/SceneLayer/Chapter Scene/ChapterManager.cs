@@ -5,9 +5,13 @@ using ScentInTheShadow.Global.Manager;
 
 public class ChapterManager : MonoBehaviour
 {
+    [SerializeField] List<GameObject> characters;
     private void Awake()
     {
         Debug.Log($"{Time.time} player has character: {GameManager.instance.Player.CharacterName}");
+
+        GameObject go = characters.Find((x) => x.name == GameManager.instance.Player.CharacterName);
+        go.SetActive(true);
     }
 
     // Start is called before the first frame update
